@@ -38,23 +38,60 @@ public class PopulateScript {
 		
 		fileReader.useDelimiter(",");
 	    
-		//put all values in String arrayLists
-		ArrayList<String> shipNames = new ArrayList<String>();
-		ArrayList<String> ImoNums = new ArrayList<String>();
-		ArrayList<String> shipOwners = new ArrayList<String>();
 		
 		
+		
+		
+		String shipName, imoNo, owner, charterer, operator, arrivalPort, arrivalDate,agent, cargoType, quantity, consignee, shipper, loadPort, loadCountry;
+		int row;
+		String sqlInsert = "";
+	    int count = 0;
 		while (fileReader.hasNext()) {
-			token = fileReader.next();
-			System.out.println(token);
+			count++;
+			shipName = fileReader.next().trim();
+			System.out.println(shipName);
+			imoNo = fileReader.next();
+			System.out.println(imoNo);
+			owner = fileReader.next();
+			System.out.println(owner);
+			sqlInsert = "INSERT INTO Ship (Ship_Name, Imo_No, Owner)" +
+			"VALUES('" + shipName + "', '" + imoNo + "', '" + owner + "')";
+	
+			Statement statement = connection.createStatement();
+			
+			
+			
+			row = statement.executeUpdate(sqlInsert);
+			
+			
+			charterer = fileReader.next();
+			System.out.println(charterer);
+			operator = fileReader.next();
+			System.out.println(operator);
+			arrivalPort = fileReader.next();
+			System.out.println(arrivalPort);
+			arrivalDate = fileReader.next();
+			System.out.println(arrivalDate);
+			agent = fileReader.next();
+			System.out.println(agent);
+			cargoType = fileReader.next();
+			System.out.println(cargoType);
+			quantity = fileReader.next();
+			System.out.println(quantity);
+			consignee = fileReader.next();
+			System.out.println(consignee);
+			shipper = fileReader.next();
+			System.out.println(shipper);
+			loadPort = fileReader.next();
+			System.out.println(loadPort);
+			loadCountry = fileReader.next();
+			System.out.println(loadCountry);
+			
+			//sqlInsert = "INSERT INTO Charter (Charter_Name) VALUES(?)";
+			
 		}
 		
-		 String sql = "INSERT INTO Ship (Ship_Name, Imo_No, Owner) VALUES (?, ?, ?)";
-         
-         PreparedStatement preparedStatement = connection.prepareStatement(sql);
-         preparedStatement.setString(1, "Jim Rohn");
-         preparedStatement.setString(2, "rohnj@herbalife.com");
-         preparedStatement.setString(3, "0919989998");
+		
 		
 		
 		
