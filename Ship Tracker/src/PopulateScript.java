@@ -38,63 +38,57 @@ public class PopulateScript {
 		
 		fileReader.useDelimiter(",");
 	    
+		ArrayList<String> shipNames = new ArrayList <String>();
+		ArrayList<String> imoNums = new ArrayList <String>();
+		ArrayList<String> owners = new ArrayList <String>();
+		ArrayList<String> charterers = new ArrayList <String>();
+		ArrayList<String> operators = new ArrayList <String>();
+		ArrayList<String> arrivalDates = new ArrayList <String>();
+		ArrayList<String> agents = new ArrayList <String>();
+		ArrayList<String> cargoTypes = new ArrayList <String>();
+		ArrayList<String> quantities = new ArrayList <String>();
+		ArrayList<String> cosnignees = new ArrayList <String>();
+		ArrayList<String> shippers = new ArrayList <String>();
+		ArrayList<String> loadPorts = new ArrayList <String>();
+		ArrayList<String> loadCountries = new ArrayList <String>();
 		
-		
-		
-		
+		int count = 0;
 		String shipName, imoNo, owner, charterer, operator, arrivalPort, arrivalDate,agent, cargoType, quantity, consignee, shipper, loadPort, loadCountry;
-		int row;
-		String sqlInsert = "";
-	    int count = 0;
 		while (fileReader.hasNext()) {
-			count++;
-			shipName = fileReader.next().trim();
-			System.out.println(shipName);
-			imoNo = fileReader.next();
-			System.out.println(imoNo);
-			owner = fileReader.next();
-			System.out.println(owner);
-			sqlInsert = "INSERT INTO Ship (Ship_Name, Imo_No, Owner)" +
-			"VALUES('" + shipName + "', '" + imoNo + "', '" + owner + "')";
-	
-			Statement statement = connection.createStatement();
+	        
+			if (count%12 == 0) {
+				shipName = fileReader.next().trim();
+				shipNames.add(shipName);
+				imoNo = fileReader.next();
+				imoNums.add(imoNo);
+				owner = fileReader.next();
+				owners.add(owner);
+				
+	         }	
 			
-			
-			
-			row = statement.executeUpdate(sqlInsert);
-			
-			
-			charterer = fileReader.next();
-			System.out.println(charterer);
-			operator = fileReader.next();
-			System.out.println(operator);
-			arrivalPort = fileReader.next();
-			System.out.println(arrivalPort);
-			arrivalDate = fileReader.next();
-			System.out.println(arrivalDate);
-			agent = fileReader.next();
-			System.out.println(agent);
-			cargoType = fileReader.next();
-			System.out.println(cargoType);
-			quantity = fileReader.next();
-			System.out.println(quantity);
-			consignee = fileReader.next();
-			System.out.println(consignee);
-			shipper = fileReader.next();
-			System.out.println(shipper);
-			loadPort = fileReader.next();
-			System.out.println(loadPort);
-			loadCountry = fileReader.next();
-			System.out.println(loadCountry);
-			
-			//sqlInsert = "INSERT INTO Charter (Charter_Name) VALUES(?)";
+			 if (count%11 == 0 && count > 0 ) {
+				 fileReader.nextLine();
+			 } else {
+	         //fileReader.next();	
+			 }
+	         count++;
 			
 		}
 		
 		
+		 for (String ship : shipNames) { 		      
+	           System.out.println(ship); 		
+	      }
+		System.out.println();
+		 for (String id : imoNums) { 		      
+	           System.out.println(id); 		
+	      }
+		 System.out.println();
+		 for (String ownar : owners) { 		      
+	           System.out.println(ownar); 		
+	      }
 		
-		
-		
+		 
 		fileReader.close();
 		
 	}
