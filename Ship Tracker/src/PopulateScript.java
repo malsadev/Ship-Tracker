@@ -103,22 +103,8 @@ public class PopulateScript {
 		
 		
 		ToolBox.populateShipTable(connection, shipNames, owners, imoNums);
-		/* for (String ship : shipNames) { 		      
-	           System.out.println(ship); 		
-	      }
-		System.out.println();
-		 for (String id : imoNums) { 		      
-	           System.out.println(id); 		
-	      }
-		 System.out.println();
-		 for (String ownar : owners) { 		      
-	           System.out.println(ownar); 		
-	      }
-		 System.out.println();
-		 for (String port : loadPorts) { 		      
-	           System.out.println(port); 		
-	      }
-		*/
+	    
+		
 		 
 		fileReader.close();
 		
