@@ -47,7 +47,7 @@ public class PopulateScript {
 		ArrayList<String> agents = new ArrayList <String>();
 		ArrayList<String> cargoTypes = new ArrayList <String>();
 		ArrayList<String> quantities = new ArrayList <String>();
-		ArrayList<String> cosnignees = new ArrayList <String>();
+		ArrayList<String> consignees = new ArrayList <String>();
 		ArrayList<String> shippers = new ArrayList <String>();
 		ArrayList<String> loadPorts = new ArrayList <String>();
 		ArrayList<String> loadCountries = new ArrayList <String>();
@@ -63,11 +63,38 @@ public class PopulateScript {
 				imoNums.add(imoNo);
 				owner = fileReader.next();
 				owners.add(owner);
+				charterer = fileReader.next();
+				charterers.add(charterer);
+				operator = fileReader.next();
+				operators.add(operator);
+				
+				arrivalPort = fileReader.next();// default arrival port is already specified in the database
+			
+				arrivalDate = fileReader.next();
+				arrivalDates.add(arrivalDate);
+				agent = fileReader.next();
+				agents.add(agent);
+				cargoType = fileReader.next();
+				cargoTypes.add(cargoType);
+				quantity = fileReader.next();
+				quantities.add(quantity);
+				consignee = fileReader.next();
+				consignees.add(consignee);
+				shipper = fileReader.next();
+				shippers.add(shipper);
+				loadPort = fileReader.next();
+				loadPorts.add(loadPort);
+				fileReader.useDelimiter("\n");
+				loadCountry = fileReader.next();
+				loadCountries.add(loadCountry);
+				fileReader.useDelimiter(",");
 				
 	         }	
 			
 			 if (count%11 == 0 && count > 0 ) {
+				
 				 fileReader.nextLine();
+				
 			 } else {
 	         //fileReader.next();	
 			 }
@@ -86,6 +113,10 @@ public class PopulateScript {
 		 System.out.println();
 		 for (String ownar : owners) { 		      
 	           System.out.println(ownar); 		
+	      }
+		 System.out.println();
+		 for (String port : loadPorts) { 		      
+	           System.out.println(port); 		
 	      }
 		
 		 
