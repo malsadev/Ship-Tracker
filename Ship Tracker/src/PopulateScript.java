@@ -95,15 +95,15 @@ public class PopulateScript {
 				
 				 fileReader.nextLine();
 				
-			 } else {
-	         //fileReader.next();	
-			 }
+			 } 
 	         count++;
 			
 		}
 		
 		
-		 for (String ship : shipNames) { 		      
+		
+		ToolBox.populateShipTable(connection, shipNames, owners, imoNums);
+		/* for (String ship : shipNames) { 		      
 	           System.out.println(ship); 		
 	      }
 		System.out.println();
@@ -118,7 +118,7 @@ public class PopulateScript {
 		 for (String port : loadPorts) { 		      
 	           System.out.println(port); 		
 	      }
-		
+		*/
 		 
 		fileReader.close();
 		
