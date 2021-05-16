@@ -102,8 +102,18 @@ public class PopulateScript {
 		
 		
 		
+		
+		
 		ToolBox.populateShipTable(connection, shipNames, owners, imoNums);
 	    
+		ToolBox.populateTable(connection, charterers, "Charterer");
+		ToolBox.populateTable(connection, operators, "Operator");
+		ToolBox.populateTable(connection, agents, "Agent");
+		ToolBox.populateTable(connection, cargoTypes, "Cargo_Type");
+		ToolBox.populateTable(connection, consignees, "Consignee");
+		ToolBox.populateTable(connection, shippers, "Shipper");
+		ToolBox.populateTable(connection, loadPorts, "Load_Port");
+		ToolBox.populateTable(connection, loadCountries, "Load_Country");
 		
 		 
 		fileReader.close();
