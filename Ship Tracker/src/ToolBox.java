@@ -58,9 +58,21 @@ public class ToolBox {
 				
 			}
 			
-			return arrayList2;
-			
-			
-			
+			return arrayList2;	
 		}
+		
+		public static void populateActivityTable(Connection connection, String shipName, String charterer, String operator, String arrivalDate, String agent, String cargoType, String quantity, String consignee, String shipper, String loadPort, String loadCountry) throws SQLException {
+			
+			String sqlSelect = "";
+			
+			
+	        
+	        Statement statement = connection.createStatement();
+	        ResultSet result = statement.executeQuery(sqlSelect);
+	        
+	        if (result.next()) {
+		        int id = result.getInt(1);
+		        System.out.println(id);
+		    }
+		} 
 }

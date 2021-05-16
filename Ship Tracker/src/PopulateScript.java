@@ -85,7 +85,7 @@ public class PopulateScript {
 				loadPort = fileReader.next();
 				loadPorts.add(loadPort);
 				fileReader.useDelimiter("\n");
-				loadCountry = fileReader.next();
+				loadCountry = fileReader.next().replace(",", "");
 				loadCountries.add(loadCountry);
 				fileReader.useDelimiter(",");
 				
@@ -115,7 +115,11 @@ public class PopulateScript {
 		ToolBox.populateTable(connection, loadPorts, "Load_Port");
 		ToolBox.populateTable(connection, loadCountries, "Load_Country");
 		
-		 
+		Scanner fileReader2 = new Scanner(myFile);
+		
+		
+		
+		fileReader2.close(); 
 		fileReader.close();
 		
 	}
