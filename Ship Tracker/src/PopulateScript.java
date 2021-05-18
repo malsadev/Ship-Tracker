@@ -117,6 +117,70 @@ public class PopulateScript {
 		
 		Scanner fileReader2 = new Scanner(myFile);
 		
+	    token = "";
+		
+		fileReader2.useDelimiter("\n");
+		
+		while (fileReader2.hasNext()) {
+			token = fileReader2.next();
+			
+			if (token.contains("Jan")) {
+				token =  fileReader2.next();
+				break;
+			}
+			
+		}
+		
+		fileReader2.useDelimiter(",");
+		
+		
+	    count = 0;
+		while (fileReader2.hasNext()) {
+			
+			if (count%12 == 0) {
+				shipName = fileReader2.next().trim();
+				
+				imoNo = fileReader2.next();
+				
+				owner = fileReader2.next();
+				
+				charterer = fileReader2.next();
+				
+				operator = fileReader2.next();
+				
+				
+				arrivalPort = fileReader2.next();// default arrival port is already specified in the database
+			
+				arrivalDate = fileReader2.next();
+				
+				agent = fileReader2.next();
+				
+				cargoType = fileReader2.next();
+				
+				quantity = fileReader2.next();
+				
+				consignee = fileReader2.next();
+				
+				shipper = fileReader2.next();
+				
+				loadPort = fileReader2.next();
+				
+				fileReader2.useDelimiter("\n");
+				loadCountry = fileReader2.next().replace(",", "");
+				ToolBox.populateActivityTable(connection, shipName, charterer, operator, arrivalDate, agent, cargoType, quantity, consignee, shipper, loadPort, loadCountry);
+				fileReader2.useDelimiter(",");
+				
+	         }	
+			
+			 if (count%11 == 0 && count > 0 ) {
+				
+				 fileReader2.nextLine();
+				
+			 } 
+	         count++;
+			
+		}
+		
 		
 		
 		fileReader2.close(); 

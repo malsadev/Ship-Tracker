@@ -1,7 +1,7 @@
 //import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
-//import java.util.Scanner;
+import java.util.Scanner;
 
 
 /*
@@ -63,16 +63,28 @@ public class ToolBox {
 		
 		public static void populateActivityTable(Connection connection, String shipName, String charterer, String operator, String arrivalDate, String agent, String cargoType, String quantity, String consignee, String shipper, String loadPort, String loadCountry) throws SQLException {
 			
-			String sqlSelect = "";
+			int row = 0;		
+			String sqlSelectShip = "SELECT Ship_ID FROM Ship WHERE Ship_Name ='" + shipName + "'";
 			
-			
+			String sqlSelectCharterer = "SELECT Charterer_ID FROM Charterer where Charterer ='"+charterer+"'";
 	        
-	        Statement statement = connection.createStatement();
-	        ResultSet result = statement.executeQuery(sqlSelect);
+	        Statement queryStatement = connection.createStatement();
+	        ResultSet result = queryStatement.executeQuery(sqlSelectShip);
 	        
 	        if (result.next()) {
 		        int id = result.getInt(1);
-		        System.out.println(id);
+		        String sqlInsertShip = "INSERT INTO Activity(Ship_ID) VALUES ("+id+")";
+		        Statement insertStatement = connection.createStatement();
+		        row = insertStatement.executeUpdate(sqlInsertShip);
+		    }
+	        
+            result = queryStatement.executeQuery(sqlSelectCharterer);
+	        
+	        if (result.next()) {
+		        int id = result.getInt(1);
+		        String sqlInsertCharterer = "INSERT INTO Activity(Charterer_ID) VALUES ("+id+")";
+		        Statement insertStatement = connection.createStatement();
+		        row = insertStatement.executeUpdate(sqlInsertCharterer);
 		    }
 		} 
 }
