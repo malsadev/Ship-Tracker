@@ -63,28 +63,34 @@ public class ToolBox {
 		
 		public static void populateActivityTable(Connection connection, String shipName, String charterer, String operator, String arrivalDate, String agent, String cargoType, String quantity, String consignee, String shipper, String loadPort, String loadCountry) throws SQLException {
 			
-			int row = 0;		
+			int row = 0;
+			Statement queryStatement = connection.createStatement();
+			Statement insertStatement = connection.createStatement();
 			String sqlSelectShip = "SELECT Ship_ID FROM Ship WHERE Ship_Name ='" + shipName + "'";
 			
 			String sqlSelectCharterer = "SELECT Charterer_ID FROM Charterer where Charterer ='"+charterer+"'";
 	        
-	        Statement queryStatement = connection.createStatement();
+	       
 	        ResultSet result = queryStatement.executeQuery(sqlSelectShip);
+	        int ship_ID = 0;
+	        int charterer_ID = 0;
+	        while (result.next()) {
+		        ship_ID = result.getInt("Ship_ID");
+		       
+		    }
+	        queryStatement.close();
+	       
+	        Statement queryStatement2 = connection.createStatement();
+
+            ResultSet result2 = queryStatement2.executeQuery(sqlSelectCharterer);
 	        
-	        if (result.next()) {
-		        int id = result.getInt(1);
-		        String sqlInsertShip = "INSERT INTO Activity(Ship_ID) VALUES ("+id+")";
-		        Statement insertStatement = connection.createStatement();
-		        row = insertStatement.executeUpdate(sqlInsertShip);
+	        while (result2.next()) {
+		        charterer_ID = result2.getInt("Charterer_ID");
 		    }
 	        
-            result = queryStatement.executeQuery(sqlSelectCharterer);
+	        queryStatement2.close();
+	        String sqlInsertRecord = "INSERT INTO Activity(Ship_ID, Charterer_ID) VALUES ("+ship_ID+"," + charterer_ID + ")";
+	        row = insertStatement.executeUpdate(sqlInsertRecord);
 	        
-	        if (result.next()) {
-		        int id = result.getInt(1);
-		        String sqlInsertCharterer = "INSERT INTO Activity(Charterer_ID) VALUES ("+id+")";
-		        Statement insertStatement = connection.createStatement();
-		        row = insertStatement.executeUpdate(sqlInsertCharterer);
-		    }
 		} 
 }
