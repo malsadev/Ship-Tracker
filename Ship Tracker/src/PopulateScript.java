@@ -11,15 +11,16 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.*;
 import java.sql.*;
+import java.text.ParseException;
 
 public class PopulateScript {
 
-	public static void main(String[] args) throws SQLException, FileNotFoundException {
+	public static void main(String[] args) throws SQLException, FileNotFoundException, ParseException {
 		
 		String databaseURL = "jdbc:ucanaccess://ShipTracker.accdb";
 		Connection connection = DriverManager.getConnection(databaseURL);
 		
-		File myFile = new File ("Aden Port Volume jan.csv");
+		File myFile = new File ("Aden port volume March.csv");
 		
 		Scanner fileReader = new Scanner (myFile);
 		String  token = "";
@@ -29,7 +30,7 @@ public class PopulateScript {
 		while (fileReader.hasNext()) {
 			token = fileReader.next();
 			
-			if (token.contains("Jan")) {
+			if (token.contains("March")) {
 				token =  fileReader.next();
 				break;
 			}
@@ -124,7 +125,7 @@ public class PopulateScript {
 		while (fileReader2.hasNext()) {
 			token = fileReader2.next();
 			
-			if (token.contains("Jan")) {
+			if (token.contains("March")) {
 				token =  fileReader2.next();
 				break;
 			}
